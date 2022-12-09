@@ -4,7 +4,7 @@ import numpy as np
 import psycopg2
 
 #acct connection
-conn = psycopg2.connect(dbname='aact', user='user', password='password', host='aact-db.ctti-clinicaltrials.org', port='5432')
+conn = psycopg2.connect(**st.secrets["postgres"])
 cur = conn.cursor()
 
 sql = """select distinct conditions.nct_id ,conditions.name,studies.last_known_status, studies.last_update_posted_date, facilities.country, facilities.city from conditions 
