@@ -34,7 +34,7 @@ for i in range(len(records)):
   
 countries = []
 for m in range(len(countries_all)):
-  countries.append(countries_all[i][0])
+  countries.append(countries_all[m][0])
 
 condition = st.selectbox('Please select the condition you want to look for:',ids)
 
