@@ -14,7 +14,9 @@ join facilities
 on facilities.nct_id = studies.nct_id
 where (conditions.name = 'Diabetes Mellitus, Type 2' and (studies.last_known_status = 'Recruiting' or studies.last_known_status = 'Active, not recruiting'))"""
 
-cur.execute(sql)
+all_con = """select distinct conditions.name from conditions"""
+
+cur.execute(all_con)
 
 records = cur.fetchall()
 
