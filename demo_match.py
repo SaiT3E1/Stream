@@ -51,6 +51,9 @@ trials = []
 for n in range(len(trials_)):
   trials.append(trials_[n][0])
 
-st.write('',trials)
+if trials != []:
+  st.write('We found',len(trials))
+else:
+  st.write('There aren't any trials for this condition in the chosen area')
     
 conn.close()
