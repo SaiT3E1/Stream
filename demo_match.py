@@ -19,7 +19,7 @@ cur.execute(sql)
 records = cur.fetchall()
 
 cur.close()
-con.close()
+conn.close()
 
 st.subheader('Clinical trials')
 
