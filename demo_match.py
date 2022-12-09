@@ -54,6 +54,6 @@ for n in range(len(trials_)):
 if trials != []:
   st.write('We found',len(trials))
 else:
-  st.write('There aren't any trials for this condition in the chosen area')
+  st.write("There aren't any trials for this condition in the chosen area")
     
 conn.close()
