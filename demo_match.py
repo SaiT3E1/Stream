@@ -24,7 +24,7 @@ conn.close()
 st.subheader('Clinical trials')
 
 ids = []
-for i in len(records):
+for i in range(len(records)):
   ids.append(records[i][0])
 
 trials = st.selectbox('Please select clinical trial:',ids)
