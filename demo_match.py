@@ -20,7 +20,7 @@ cur.execute(all_coun)
 countries_all = cur.fetchall()
 cur.close()
 
-st.subheader('Clinical trials')
+st.subheader('A Smarter Clinical trials Matching')
 
 ids = []
 for i in range(len(records)):
