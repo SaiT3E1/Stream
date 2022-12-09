@@ -16,8 +16,11 @@ where (conditions.name = 'Diabetes Mellitus, Type 2' and (studies.last_known_sta
 
 all_con = """select distinct conditions.name from conditions"""
 
-cur.execute(all_con)
+all_coun = """select distinct facilities.countries from facilities"""
 
+cur.execute(all_con)
+cur.execute(all_coun)
+countries_all = cur.fetchall()
 records = cur.fetchall()
 
 cur.close()
@@ -28,5 +31,11 @@ st.subheader('Clinical trials')
 ids = []
 for i in range(len(records)):
   ids.append(records[i][0])
+  
+countries = []
+for m in range(len(countries_all)):
+  countries.append(countries_all[i][0])
 
-trials = st.selectbox('Please select clinical trial:',ids)
+condition = st.selectbox('Please select the condition you want to look for:',ids)
+
+country = st.selectbox('Please select the location you want to attend the trial:',countries)
