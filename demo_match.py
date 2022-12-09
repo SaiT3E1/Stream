@@ -16,7 +16,7 @@ where (conditions.name = 'Diabetes Mellitus, Type 2' and (studies.last_known_sta
 
 all_con = """select distinct conditions.name from conditions"""
 
-all_coun = """select distinct facilities.countries from facilities"""
+all_coun = """select distinct facilities.country from facilities"""
 
 cur.execute(all_con)
 cur.execute(all_coun)
