@@ -7,13 +7,6 @@ import psycopg2
 conn = psycopg2.connect(**st.secrets["postgres"])
 cur = conn.cursor()
 
-sql = """select distinct conditions.nct_id ,conditions.name,studies.last_known_status, studies.last_update_posted_date, facilities.country, facilities.city from conditions 
-join studies
-on studies.nct_id = conditions.nct_id
-join facilities
-on facilities.nct_id = studies.nct_id
-where (conditions.name = 'Diabetes Mellitus, Type 2' and (studies.last_known_status = 'Recruiting' or studies.last_known_status = 'Active, not recruiting'))"""
-
 all_con = """select distinct conditions.name from conditions"""
 
 all_coun = """select distinct facilities.country from facilities"""
@@ -25,8 +18,19 @@ cur.close()
 cur = conn.cursor()
 cur.execute(all_coun)
 countries_all = cur.fetchall()
-
 cur.close()
+
+cur = conn.cursor()
+sql = """select distinct conditions.nct_id ,conditions.name,studies.last_known_status, studies.last_update_posted_date, facilities.country, facilities.city from conditions 
+join studies
+on studies.nct_id = conditions.nct_id
+join facilities
+on facilities.nct_id = studies.nct_id
+where (conditions.name = {fcondition} and facilities.country = {fcountry} and (studies.last_known_status = 'Recruiting' or studies.last_known_status = 'Active, not recruiting'))""".format(fcondition=condition,fcountry=country)
+cur.execute(sql)
+trials_ = cur.fetchall()
+cur.close()
+
 conn.close()
 
 st.subheader('Clinical trials')
@@ -38,7 +42,12 @@ for i in range(len(records)):
 countries = []
 for m in range(len(countries_all)):
   countries.append(countries_all[m][0])
+  
+trials = []
+for n in range(len(trials_)):
+  trials.append(trials_[n][0])
 
 condition = st.selectbox('Please select the condition you want to look for:',ids)
 
 country = st.selectbox('Please select the location you want to attend the trial:',countries)
+
