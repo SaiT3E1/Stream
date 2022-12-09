@@ -51,6 +51,6 @@ trials = []
 for n in range(len(trials_)):
   trials.append(trials_[n][0])
 
-st.write('',trials[1])
+st.write('',trials)
     
 conn.close()
