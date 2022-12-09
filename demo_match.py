@@ -40,7 +40,7 @@ join studies
 on studies.nct_id = conditions.nct_id
 join facilities
 on facilities.nct_id = studies.nct_id
-where (conditions.name = {fcondition} and facilities.country = {fcountry} and (studies.last_known_status = 'Recruiting' or studies.last_known_status = 'Active, not recruiting'))""".format(fcondition=condition,fcountry=country)
+where (conditions.name = {fcondition} and facilities.country = {fcountry} and (studies.last_known_status = 'Recruiting' or studies.last_known_status = 'Active, not recruiting'))""".format(fcondition=str(condition),fcountry=str(country))
 cur.execute(sql)
 trials_ = cur.fetchall()
 cur.close()
