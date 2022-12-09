@@ -52,7 +52,7 @@ for n in range(len(trials_)):
   trials.append(trials_[n][0])
 
 if trials != []:
-  st.write('We found',len(trials))
+  st.write('We found',len(trials),' trials')
 else:
   st.write("There aren't any trials for this condition in the chosen area")
     
