@@ -19,9 +19,12 @@ all_con = """select distinct conditions.name from conditions"""
 all_coun = """select distinct facilities.country from facilities"""
 
 cur.execute(all_con)
+records = cur.fetchall()
+cur.close()
+
+cur = conn.cursor()
 cur.execute(all_coun)
 countries_all = cur.fetchall()
-records = cur.fetchall()
 
 cur.close()
 conn.close()
