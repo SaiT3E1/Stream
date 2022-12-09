@@ -20,6 +20,20 @@ cur.execute(all_coun)
 countries_all = cur.fetchall()
 cur.close()
 
+st.subheader('Clinical trials')
+
+ids = []
+for i in range(len(records)):
+  ids.append(records[i][0])
+  
+countries = []
+for m in range(len(countries_all)):
+  countries.append(countries_all[m][0])
+
+condition = st.selectbox('Please select the condition you want to look for:',ids)
+
+country = st.selectbox('Please select the location you want to attend the trial:',countries)
+
 cur = conn.cursor()
 sql = """select distinct conditions.nct_id ,conditions.name,studies.last_known_status, studies.last_update_posted_date, facilities.country, facilities.city from conditions 
 join studies
@@ -31,23 +45,10 @@ cur.execute(sql)
 trials_ = cur.fetchall()
 cur.close()
 
-conn.close()
-
-st.subheader('Clinical trials')
-
-ids = []
-for i in range(len(records)):
-  ids.append(records[i][0])
-  
-countries = []
-for m in range(len(countries_all)):
-  countries.append(countries_all[m][0])
   
 trials = []
 for n in range(len(trials_)):
   trials.append(trials_[n][0])
 
-condition = st.selectbox('Please select the condition you want to look for:',ids)
 
-country = st.selectbox('Please select the location you want to attend the trial:',countries)
-
+conn.close()
